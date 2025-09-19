@@ -33,24 +33,16 @@ public class FuelTank {
             System.out.println("Yakıt Dolduruldu");
             System.out.println("Mevcut Yakıt Miktarı : " + (anlik + litre));
 
-        }else{
+
+        } else if (anlik+litre == kapasite) {
+            System.out.println("depo tamamen dolu");
+
+
+        } else{
             x = kapasite-anlik;
             anlik +=x;
             System.out.println("Depo Kapasitesi Aşıldı" + x + "Litre Doldurulabildi");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            System.out.println("Güncel Yakıt Miktarı: Yakıt Tamamen Dolu" + kapasite);
 
 
         }
