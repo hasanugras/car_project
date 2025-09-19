@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner inp = new Scanner(System.in);
+        Car araba = new Car();
 
         System.out.println("Araba Similasyonuna Hoşgeldiniz!");
 
@@ -22,24 +23,34 @@ public class Main {
 
             if (secim ==1){
                 System.out.println("Aracı İlerlertmeyi Seçtiniz");
+                System.out.print("Kaç Km Gitmek İstiyorsunuz? :");
+                int km = inp.nextInt();
+                araba.ilerle(km);
+
+
 
             } else if (secim ==2) {
                 System.out.println("Yakıt Dolduruluyor Lütfen Doldurmak İstediğiniz Miktarı Söyleyin :");
+                System.out.print("Kaç Litre Yakıt Almak İstiyorsunuz? :");
+                int litre = inp.nextInt();
+                araba.yakitDoldur(litre);
 
 
             } else if (secim ==3) {
                 System.out.println("tekerlek basıncı kontrol ediliyor");
+                araba.tekerlekBasincleri();
 
 
             } else if (secim ==4) {
                 System.out.println("Araç Durumu :");
+                araba.printStatus();
 
 
             }else if (secim == 5 ){
                 System.out.println("Programdan çıkılıyor ... İyi Yolculuklar");
                 cikis = false;
             }else{
-                System.out.println("Yanlış");
+                System.out.println("Yanlış Tuş Tuşladınız");
             }
 
 
