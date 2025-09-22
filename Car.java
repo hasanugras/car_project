@@ -13,106 +13,95 @@ public class Car {
         this.depo = new FuelTank(50);
         this.onSol = new Wheel("Ön Sol", 33, 27);
         this.onSag = new Wheel("Ön Sağ", 33, 27);
-        this.arkaSol = new Wheel("Arka Sağ", 33, 27);
+        this.arkaSol = new Wheel("Arka Sol", 33, 27);
         this.arkaSag = new Wheel("Arka Sağ", 33, 27);
         this.mesafe = 0;
 
     }
 
-    boolean sorun = false;
+
 
 
     public void ilerle(int km) {
         int güncelYakit = depo.getAnlik();
         int harcananYakit = km / 10;
+
         if (depo.getAnlik() < harcananYakit) {
             System.out.println("Yeterli yakıt yok! Lütfen yakıt doldurun.");
-
+            return;
         }
-
 
         Scanner inp = new Scanner(System.in);
         String cevap;
-
+        boolean sorun = false;
 
         if (onSol.basincKontrol()) {
-            System.out.println(onSol.getKonum() + "Tekerleğin Havası Çok düşük,İlerleme Verimli Değil");
+            System.out.println(onSol.getKonum() + " tekerleğin havası çok düşük!");
             sorun = true;
-            System.out.println("havasını doldurmak ister misiniz?  ");
+            System.out.print("Havasını doldurmak ister misiniz? ");
             cevap = inp.nextLine();
             if (cevap.equalsIgnoreCase("evet")) {
-                System.out.println("kaç psı basmak istiyorsunuz?");
-                int hava = inp.nextInt();
+                System.out.print("Kaç psi basmak istiyorsunuz? ");
+                int hava =inp.nextInt();
                 inp.nextLine();
-                System.out.println("hava şişiriliyor...");
+                System.out.println("Hava şişiriliyor...");
                 onSol.sisir(hava);
-
             }
-
-
         }
+
         if (onSag.basincKontrol()) {
-            System.out.println(onSag.getKonum() + "Tekerleğin Havası Çok düşük,İlerleme Verimli Değil");
+            System.out.println(onSag.getKonum() + " tekerleğin havası çok düşük!");
             sorun = true;
-            System.out.println("havasını doldurmak ister misiniz?  ");
+            System.out.print("Havasını doldurmak ister misiniz? ");
             cevap = inp.nextLine();
             if (cevap.equalsIgnoreCase("evet")) {
-                System.out.println("kaç psı basmak istiyorsunuz?");
-                int hava = inp.nextInt();
-                inp.nextLine();
-                System.out.println("hava şişiriliyor...");
+                System.out.print("Kaç psi basmak istiyorsunuz? ");
+                int hava = Integer.parseInt(inp.nextLine());
+                System.out.println("Hava şişiriliyor...");
                 onSag.sisir(hava);
-
-
             }
-            if (arkaSol.basincKontrol()) {
-                System.out.println(arkaSol.getKonum() + "Tekerleğin Havası Çok düşük,İlerleme Verimli Değil");
-                sorun = true;
-                System.out.println("havasını doldurmak ister misiniz?  ");
-                cevap = inp.nextLine();
-                if (cevap.equalsIgnoreCase("evet")) {
-                    System.out.println("kaç psı basmak istiyorsunuz?");
-                    int hava = inp.nextInt();
-                    inp.nextLine();
-                    System.out.println("hava şişiriliyor...");
-                    arkaSol.sisir(hava);
+        }
 
-
-                }
-
+        if (arkaSol.basincKontrol()) {
+            System.out.println(arkaSol.getKonum() + " tekerleğin havası çok düşük!");
+            sorun = true;
+            System.out.print("Havasını doldurmak ister misiniz? ");
+            cevap = inp.nextLine();
+            if (cevap.equalsIgnoreCase("evet")) {
+                System.out.print("Kaç psi basmak istiyorsunuz? ");
+                int hava = Integer.parseInt(inp.nextLine());
+                System.out.println("Hava şişiriliyor...");
+                arkaSol.sisir(hava);
             }
-            if (arkaSag.basincKontrol()) {
-                System.out.println(arkaSag.getKonum() + "Tekerleğin Havası Çok düşük,İlerleme Verimli Değil");
-                sorun = true;
-                System.out.println("havasını doldurmak ister misiniz?  ");
-                cevap = inp.nextLine();
-                if (cevap.equalsIgnoreCase("evet")) {
-                    System.out.println("kaç psı basmak istiyorsunuz?");
-                    int hava = inp.nextInt();
-                    inp.nextLine();
-                    System.out.println("hava şişiriliyor...");
-                    arkaSol.sisir(hava);
+        }
 
-                }
-
+        if (arkaSag.basincKontrol()) {
+            System.out.println(arkaSag.getKonum() + " tekerleğin havası çok düşük!");
+            sorun = true;
+            System.out.print("Havasını doldurmak ister misiniz? ");
+            cevap = inp.nextLine();
+            if (cevap.equalsIgnoreCase("evet")) {
+                System.out.print("Kaç psi basmak istiyorsunuz? ");
+                int hava = Integer.parseInt(inp.nextLine());
+                System.out.println("Hava şişiriliyor...");
+                arkaSag.sisir(hava); // düzelttim
             }
-            if (sorun) {
-                System.out.println("Aracı çalıştırma, lastik basınçlarını kontrol et!");
-            } else {
-                System.out.println("Tüm lastikler normal, yola çıkabilirsin.");
+        }
 
-            }
-            depo.doldur(-harcananYakit);
-            mesafe += km;
-            System.out.println(km + "Km Yol Gidildi");
-            System.out.println("kalan yakıt miktarı :" + depo.getAnlik());
-
-
+        if (sorun) {
+            System.out.println("Aracı çalıştırma, lastik basınçlarını kontrol et!");
+            return;
+        } else {
+            System.out.println("Tüm lastikler normal, yola çıkabilirsin.");
         }
 
 
-
+        depo.doldur(-harcananYakit);
+        mesafe += km;
+        System.out.println(km + " km yol gidildi.");
+        System.out.println("Kalan yakıt: " + depo.getAnlik());
     }
+
     public void printStatus(){
         System.out.println("-------- ARAÇ DURUMU --------");
         System.out.println("Kalan Yakıt :" + depo.getAnlik() + "litre");
@@ -120,7 +109,7 @@ public class Car {
         System.out.println("Sağ Ön Tekerlek Basıncı :" + onSag.getBasinc() + "psi" );
         System.out.println("Sol Ön Tekerlek Basıncı :" + onSol.getBasinc() + "psi" );
         System.out.println("Arka Sağ Tekerlek Basıncı :" + arkaSag.getBasinc() + "psi" );
-        System.out.println("Arka Sol Tekerlek Basıncı :" + onSol.getBasinc() + "psi" );
+        System.out.println("Arka Sol Tekerlek Basıncı :" + arkaSol.getBasinc() + "psi" );
 
 
     }
@@ -133,7 +122,7 @@ public class Car {
         System.out.println("Sağ Ön Tekerlek Basıncı :" + onSag.getBasinc() + "psi" );
         System.out.println("Sol Ön Tekerlek Basıncı :" + onSol.getBasinc() + "psi" );
         System.out.println("Arka Sağ Tekerlek Basıncı :" + arkaSag.getBasinc() + "psi" );
-        System.out.println("Arka Sol Tekerlek Basıncı :" + onSol.getBasinc() + "psi" );
+        System.out.println("Arka Sol Tekerlek Basıncı :" + arkaSol.getBasinc() + "psi" );
 
     }
 }

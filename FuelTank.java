@@ -31,7 +31,7 @@ public class FuelTank {
         if (anlik + litre<=kapasite){
             anlik+=litre;
             System.out.println("Yakıt Dolduruldu");
-            System.out.println("Mevcut Yakıt Miktarı : " + (anlik + litre));
+            System.out.println("Mevcut Yakıt Miktarı : " + anlik);
 
 
         } else if (anlik+litre == kapasite) {

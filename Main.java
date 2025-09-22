@@ -20,11 +20,13 @@ public class Main {
 
             System.out.print("Lütfen Seçmek İstediğiniz İşlemi Giriniz : ");
             int secim = inp.nextInt();
+            inp.nextLine();
 
             if (secim ==1){
                 System.out.println("Aracı İlerlertmeyi Seçtiniz");
                 System.out.print("Kaç Km Gitmek İstiyorsunuz? :");
                 int km = inp.nextInt();
+                inp.nextLine();
                 araba.ilerle(km);
 
 
@@ -33,6 +35,7 @@ public class Main {
                 System.out.println("Yakıt Dolduruluyor Lütfen Doldurmak İstediğiniz Miktarı Söyleyin :");
                 System.out.print("Kaç Litre Yakıt Almak İstiyorsunuz? :");
                 int litre = inp.nextInt();
+                inp.nextLine();
                 araba.yakitDoldur(litre);
 
 
