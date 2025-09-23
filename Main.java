@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner inp = new Scanner(System.in);
-        Car araba = new Car();
+        Car araba = new Car(null);
 
         System.out.println("Araba Similasyonuna Hoşgeldiniz!");
 
